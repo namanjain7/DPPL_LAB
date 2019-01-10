@@ -127,6 +127,32 @@ bool is_element_of(Head *head, int x){
 	return false;
 }
 
+
+Head* union_(Head *head1, Head *head2){
+	Head* to_return = head1;
+	Node *temp = head2->linked_list;
+	while(temp != NULL){
+		add(to_return,temp->data);
+		temp = temp->next;
+	}
+	return to_return;
+}
+
+Head* intersection(Head *head1, Head *head2){
+	Head* to_return = head1;
+	Node *temp = head2->linked_list;
+	while(temp!=NULL){
+		if(!is_element_of(to_return,temp->data)){
+			remove(to_return,);
+		}
+	}
+	
+	
+
+}
+
+
+
 int main(){
 	int l = 10;
 	int arr[l];
@@ -134,9 +160,12 @@ int main(){
 		arr[i] = i * 2;
 	}
 	Head *head1 = build(arr,l);
+	for(int i =0 ;i<l;i++){
+		arr[i] = i * 3;
+	}
+	Head *head2 = build(arr,l);
 	enumerate(head1);
-	printf("%d\n",size(head1));
-	printf("%d\n",is_element_of(head1,6));
-	remove(head1,10);
-	enumerate(head1);
+	enumerate(head2);
+	Head* head3 = union_(head1,head2);
+	enumerate(head3);
 }
