@@ -137,4 +137,6 @@ int main(){
 	enumerate(head1);
 	printf("%d\n",size(head1));
 	printf("%d\n",is_element_of(head1,6));
+	remove(head1,10);
+	enumerate(head1);
 }
