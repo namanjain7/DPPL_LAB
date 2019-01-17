@@ -16,13 +16,13 @@ int main(){
 	bst2.insert(10);
 	bst2.insert(5);
 	bst2.insert(11);
-	bst2.insert(12);
+	bst2.insert(6);
 	bst2.insert(1);
 	bst2.insert(20);
 	bst2.insert(-1);
 	bst2.inorder();
 	
-	std::cout<<(bst1.is_identical(bst2))<<std::endl;
+	std::cout<<(bst1 == bst2)<<std::endl;
 	
 	
 

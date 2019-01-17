@@ -14,6 +14,7 @@ node::node(int x){
 bst::bst(){
 	root = NULL;	
 }
+
 void bst::insert(int x, node *Troot){
 	if(x>Troot->data){
 		if(Troot->right==NULL){
@@ -67,20 +68,6 @@ void bst::inorder(node *Troot){
 	inorder(Troot->right);
 }
 
-bool bst::is_identical(bst bst2){
-	if(bst2.root == NULL && root == NULL){
-		return 1;
-	}
-	if(bst2.root == NULL || root == NULL){
-		return 0;
-	}
-	if(bst2.root->data != root->data){
-		return 0;
-	}
-	return is_identical(root->left,bst2.root->left) && is_identical(root->right,bst2.root->right);
-}
-
-
 bool bst::is_identical(node *bst1, node *bst2){
 	if(bst2 == NULL && bst1 == NULL){
 		return 1;
@@ -96,7 +83,9 @@ bool bst::is_identical(node *bst1, node *bst2){
 
 
 
-
+bool bst::operator==(bst bst2){
+	return is_identical(bst2.root,root);
+}
 
 
 

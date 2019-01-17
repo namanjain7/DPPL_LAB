@@ -16,15 +16,15 @@ class bst{
 
 	node *root;
 	bool is_identical(node*, node*);
+	bool is_identical(bst);
 	void insert(int,node*);
 	void inorder(node*);
 	public:
 		bst();
 		void insert(int);
-		
 		void inorder();
 		
-		bool is_identical(bst);
+		bool operator== (bst bst2);
 		
 
 };
