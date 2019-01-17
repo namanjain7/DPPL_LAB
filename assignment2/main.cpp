@@ -11,19 +11,10 @@ int main(){
 	bst1.insert(20);
 	bst1.insert(-1);
 	bst1.inorder();
-	
-	bst bst2;
-	bst2.insert(10);
-	bst2.insert(5);
-	bst2.insert(11);
-	bst2.insert(6);
-	bst2.insert(1);
-	bst2.insert(20);
-	bst2.insert(-1);
-	bst2.inorder();
-	
-	std::cout<<(bst1 == bst2)<<std::endl;
-	
+	std::cout<<"\n";
+	bst1.r30();
+
+
 	
 
 }

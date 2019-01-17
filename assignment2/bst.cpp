@@ -13,6 +13,7 @@ node::node(int x){
 
 bst::bst(){
 	root = NULL;	
+	mirror = false;
 }
 
 void bst::insert(int x, node *Troot){
@@ -55,6 +56,9 @@ void bst::inorder(){
 	if(root == NULL){
 		return;
 	}
+	if(mirror){
+		std::cout<<"This tree is Mirror Image of it's orignal \n";
+	}
 	inorder(root->left);
 	std::cout<<root->data<<std::endl;
 	inorder(root->right);
@@ -87,39 +91,59 @@ bool bst::operator==(bst bst2){
 	return is_identical(bst2.root,root);
 }
 
+bool bst::is_identical_structural(node *bst1, node *bst2){
+	if (bst2 == NULL && bst1 == NULL)
+	{
+		return 1;
+	}
+	if (bst2 == NULL || bst1 == NULL)
+	{
+		return 0;
+	}
+	return is_identical(bst1->left, bst2->left) && is_identical(bst1->right, bst2->right);
+}
+bool bst::is_structurally_same(bst bst2){
+	return is_identical_structural(root,bst2.root);
+}
+
+void bst::do_mirror(node *root)
+{
+	if (root == NULL)
+	{
+		return;
+	}
+	do_mirror(root->left);
+	do_mirror(root->right);
+	node *temp = root->left;
+	root->left = root->right;
+	root->right = temp;
+}
+
+void bst::mirror_image(){
+	mirror = !mirror;
+	do_mirror(root);
+
+}
+void bst::r_inorder(node *root ,int l = 0){
+	if(root==NULL){
+		return;
+	}
+	r_inorder(root->right, l+3);
+	for(int i =0;i<l;i++){
+		std::cout<<" ";
+	}
+	std::cout<<root->data<<std::endl;
+	r_inorder(root->left,l+3);
+
+}
+void bst::r30(){
+	r_inorder(root);
+}
 
 
+void bst::root_leaf_paths(node *root){
+	if(root==NULL){
+		return;
+	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
