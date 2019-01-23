@@ -22,7 +22,7 @@ class bst{
 	void inorder(node*);
 	void do_mirror(node *root);
 	void r_inorder(node *root, int);
-	void root_leaf_paths(node *root);
+	void path(node*,int*,int);
 	public:
 		bst();
 		void insert(int);
@@ -31,9 +31,10 @@ class bst{
 		bool is_structurally_same(bst bst2);
 		void mirror_image();
 		void r30();
-		void root_leaf();
+		void path();
 
 };
+
 
 
 

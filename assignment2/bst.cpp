@@ -7,6 +7,7 @@ node::node(int x){
 	data = x;
 	left = NULL;
 	right = NULL;
+	
 }
 
 
@@ -141,9 +142,29 @@ void bst::r30(){
 }
 
 
-void bst::root_leaf_paths(node *root){
-	if(root==NULL){
+
+void bst::path(node *root, int *arr = NULL, int l=0){
+	
+	if(root->left == NULL && root->right == NULL){
+		for(int i = 0;i<l;i++){
+			std::cout<<arr[i]<<" -> ";
+		}
+		std::cout << root->data << "\n";
 		return;
 	}
+	int *arr_new = new int[l+1];
+	for(int i = 0;i<l;i++){
+		arr_new[i] = arr[i];
+	}
+	arr_new[l] = root->data;
+	if(root->left!=NULL){
+		path(root->left,arr_new,l+1);
+	}
+	if(root->right!=NULL){
+		path(root->right,arr_new,l+1);
+	}
+}
 
+void bst::path(){
+	path(root);
 }
