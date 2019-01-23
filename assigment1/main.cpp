@@ -16,21 +16,25 @@ int main(){
         arr.push_back(i*3);
     }
     Node *l2= build(arr);
-    Node *l3 = union_(l1,l2);
+    std::cout << "LIST 1 -----------------\n"; 
     enumerate(l1);
-    std::cout<<"---------------\n";
+    std::cout<<"LIST 1 After deleting 0 --\n"; 
+    remove(0,l1);
+    enumerate(l1);
+    std::cout<<"LIST 2 -------------------\n";
     enumerate (l2);
-    std::cout<<"---------------\n";
+    std::cout<<"UNION OF L1 AND L 2-------\n"; 
+    Node *l3 = union_(l1, l2);
     enumerate(l3);
-    Node *l4 = intersection(l1,l2);
-    std::cout << "---------------\n";
+    std::cout << "INTERSECTION OF L1 AND L2\n";
+    Node *l4 = intersection(l1, l2);
     enumerate(l4);
+    std::cout << "DIFFERENCE OF L1 AND L2--\n";
     Node *l5 = difference(l1,l2);
-    std::cout << "---------------\n";
     enumerate(l5);
-    Node *l6 = difference(l2,l1);
-    std::cout << "---------------\n";
+    std::cout << "DIFFERENCE OF L2 AND L1--\n";
+    Node *l6 = difference(l2, l1);
     enumerate(l6);
-    std::cout << "---------------\n";
+    std::cout << "SUBSET (L2 OF L1)---------------\n";
     std::cout << subset(l2, l1) << "\n";
 }

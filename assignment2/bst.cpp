@@ -10,8 +10,6 @@ node::node(int x){
 	
 }
 
-
-
 bst::bst(){
 	root = NULL;	
 	mirror = false;
@@ -183,5 +181,3 @@ bool bst::sum_leaf(node *root,int sum){
 bool bst::sum_leaf(int sum){
 	return sum_leaf(root,sum);
 }
-
-

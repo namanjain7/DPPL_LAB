@@ -36,8 +36,4 @@ class bst{
 		bool sum_leaf(int);
 
 };
-
-
-
-
 #endif
