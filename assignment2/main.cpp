@@ -10,9 +10,12 @@ int main(){
 	bst1.insert(1);
 	bst1.insert(20);
 	bst1.insert(-1);
+	/*
 	bst1.inorder();
 	std::cout<<"\n";
 	bst1.r30();
+	*/
+	bst1.path();
 
 
 	
