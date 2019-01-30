@@ -1,19 +1,19 @@
 #include<iostream>
 #include<vector>
 #include"set.h"
-
+#include"hstb.h"
 
 int main(){
     std::vector<int> arr;
     for(int i = 0;i<10;i++){
-        arr.push_back(i*2);
+    arr.push_back(i*2);
     }
-  
+
     Node* l1 = build(arr);
     arr.clear();
 
     for (int i = 0;i<10;i++){
-        arr.push_back(i*3);
+    arr.push_back(i*3);
     }
     Node *l2= build(arr);
     std::cout << "LIST 1 -----------------\n"; 
@@ -37,4 +37,12 @@ int main(){
     enumerate(l6);
     std::cout << "SUBSET (L2 OF L1)---------------\n";
     std::cout << subset(l2, l1) << "\n";
+
+    hashtable ht1;
+    ht1.insert(5,524);
+    std::cout<<(ht1.search(6) == ht1.eof())<<std::endl;
+    std::cout<<ht1[5]->data<<std::endl;
+    std::cout<<ht1.del(5)<<std::endl;
+    std::cout<<ht1[5]<<std::endl;
+
 }
