@@ -34,6 +34,7 @@ class bst{
 		void r30();
 		void path();
 		bool sum_leaf(int);
+		int possible_structs(int);
 
 };
 #endif
