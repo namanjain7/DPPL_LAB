@@ -3,11 +3,13 @@ hashtable::hashtable(){
     for(int i =0;i<9;i++){
         bucket[i] = NULL;
     }
+    last_added=NULL;
     eol = new node;
     eol->data=-1;
     eol->key=-1;
     eol->next=NULL;
-    eol->prev=NULL;
+    eol->prev_ele=NULL;
+    eol->next_ele = NULL;
 }
 
 int hashtable::hashfunction(int key){
@@ -20,11 +22,15 @@ int hashtable::insert(int key, int data){
     new_node->data=data;
     new_node->key=key;
     new_node->next=NULL;
-    new_node->prev=NULL;
+    new_node->prev_ele=NULL;
+    new_node->next_ele=NULL;
     if(bucket[bucket_index]==NULL){
         bucket[bucket_index] = new_node;
     }else{
         node *temp = bucket[bucket_index];
+        if(temp->key==key){
+            return 0;
+        }
         while(temp->next!=NULL){
             if(temp->key==key){
                 return 0;
@@ -32,8 +38,15 @@ int hashtable::insert(int key, int data){
             temp=temp->next;
         }
         temp->next=new_node;
-        new_node->prev = temp;
     }
+    if(last_added!=NULL){
+        last_added->next_ele=new_node;
+        new_node->prev_ele=last_added;
+        last_added=new_node;
+    }else{
+        last_added=new_node;
+    }
+    
     return 1;
 }
 
@@ -60,16 +73,18 @@ int hashtable::del(int key){
     }else{
         node *prev = bucket[bucket_index];
         if(prev->key == key){
+            prev->prev_ele->next_ele=prev->next_ele;
+            prev->next_ele->prev_ele=prev->prev_ele;
             bucket[bucket_index] = prev->next;
-            bucket[bucket_index]->prev = NULL;
             delete prev;
             return 1;
         }
         node *temp = prev->next;
         while (temp != NULL){
             if (temp->key == key){
+                temp->prev_ele->next_ele = temp->next_ele;
+                temp->next_ele->prev_ele = temp->prev_ele;
                 prev->next = temp->next;
-                temp->next->prev = prev;
                 delete temp;
                 return 1;
             }
@@ -83,6 +98,66 @@ node* hashtable::operator[](int index){
     return search(index);
 }
 
-node* hashtable::eof(){
+node* hashtable::EOL(){
     return eol;
+}
+
+hashtable hashtable::union_(hashtable t2){
+    node* temp = last_added;
+    hashtable to_return;
+    while(temp!=NULL){
+        to_return.insert(temp->key,temp->data);
+        temp=temp->prev_ele;
+    }
+    temp = t2.last_added;
+    while(temp!=NULL){
+        to_return.insert(temp->key,temp->data);
+        temp = temp->prev_ele;
+    }
+    return to_return;
+}
+
+hashtable hashtable::intersection(hashtable t2){
+    node *temp = last_added;
+    hashtable to_return;
+    while (temp != NULL){
+        if(t2.search(temp->key)!=t2.EOL()){
+            to_return.insert(temp->key,temp->data);
+        }
+        temp = temp->prev_ele;
+    }
+    return to_return;
+}
+
+hashtable hashtable::difference(hashtable t2){
+    node *temp = last_added;
+    hashtable to_return;
+    while (temp != NULL){
+        if (t2.search(temp->key) == t2.EOL())
+        {
+            to_return.insert(temp->key, temp->data);
+        }
+        temp=temp->prev_ele;
+    }
+    return to_return;
+}
+
+bool hashtable::subset(hashtable t2){
+    node *temp = t2.last_added;
+    while(temp!=NULL){
+        if(search(temp->key)==EOL()){
+            return false;
+        }
+        temp = temp->prev_ele;
+    }
+    return true;
+}
+
+void hashtable::enumerate(){
+    node *temp = last_added;
+    std::cout<<"Key - Value\n";
+    while(temp!=NULL){
+        std::cout<<temp->key<<" - "<<temp->data<<"\n";
+        temp=temp->prev_ele;
+    }
 }

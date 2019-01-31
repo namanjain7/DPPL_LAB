@@ -4,6 +4,7 @@
 #include"hstb.h"
 
 int main(){
+    /*
     std::vector<int> arr;
     for(int i = 0;i<10;i++){
     arr.push_back(i*2);
@@ -37,12 +38,23 @@ int main(){
     enumerate(l6);
     std::cout << "SUBSET (L2 OF L1)---------------\n";
     std::cout << subset(l2, l1) << "\n";
-
+*/
     hashtable ht1;
-    ht1.insert(5,524);
-    std::cout<<(ht1.search(6) == ht1.eof())<<std::endl;
-    std::cout<<ht1[5]->data<<std::endl;
-    std::cout<<ht1.del(5)<<std::endl;
-    std::cout<<ht1[5]<<std::endl;
+    for(int i = 0;i<5;i++){
+        ht1.insert(i,i*3);
+    }
+    ht1.enumerate();
+    hashtable ht2;
+    for(int i = 0;i<3;i++){
+        ht2.insert(i,i*4);
+    }
+    ht2.enumerate();
+    std::cout<<ht1.subset(ht2)<<std::endl;
+    hashtable intersection_ = ht1.intersection(ht2);
+    intersection_.enumerate();
+    hashtable union_ = ht1.union_(ht2);
+    union_.enumerate();
+    hashtable difference_ = ht1.difference(ht2);
+    difference_.enumerate();
 
 }
