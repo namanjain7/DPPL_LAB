@@ -1,5 +1,14 @@
 #include"bst.h"
 #include<iostream>
+int fact(int n){
+	if(n==1){
+		return 1;
+	}
+	return n*fact(n-1);
+}
+
+
+
 
 
 node::node(){}
@@ -180,4 +189,7 @@ bool bst::sum_leaf(node *root,int sum){
 
 bool bst::sum_leaf(int sum){
 	return sum_leaf(root,sum);
+}
+int bst::possible_structs(int n){
+	return (2*fact(n))/(fact(n)*fact(n+1));
 }
