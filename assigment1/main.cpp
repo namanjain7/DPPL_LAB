@@ -41,12 +41,12 @@ int main(){
 */
     hashtable ht1;
     for(int i = 0;i<5;i++){
-        ht1.insert(i,i*3);
+        ht1.insert(i);
     }
     ht1.enumerate();
     hashtable ht2;
     for(int i = 0;i<3;i++){
-        ht2.insert(i,i*4);
+        ht2.insert(i);
     }
     ht2.enumerate();
     std::cout<<ht1.subset(ht2)<<std::endl;
