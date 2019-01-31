@@ -2,7 +2,6 @@
 class hashtable;
 struct node{
     int key;
-    int data;
     private:
         node *next;
         node *prev_ele;
@@ -16,7 +15,7 @@ class hashtable{
     node *last_added;
     public:
         hashtable();
-        int insert(int, int);
+        int insert(int);
         node* search(int);
         int del(int);
         node* operator[](int index);
