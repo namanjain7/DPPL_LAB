@@ -191,5 +191,12 @@ bool bst::sum_leaf(int sum){
 	return sum_leaf(root,sum);
 }
 int bst::possible_structs(int n){
-	return (2*fact(n))/(fact(n)*fact(n+1));
+	if(n==0||n==1){
+		return 1;
+	}
+	int c = 0;
+	for( int i = 0 ; i < n ; i++ ){
+		c = c + possible_structs(i)*possible_structs(n - 1- i);
+	}
+	return c;
 }

@@ -17,4 +17,5 @@ int main(){
 	bst1.path();
 	std::cout<<bst1.sum_leaf(21)<<"\n";
 	std::cout<<bst1.sum_leaf(541)<<"\n";
+	std::cout<<bst1.possible_structs(4)<<"\n";
 }
