@@ -11,11 +11,12 @@ class graph{
     bool **arr;
     int rows, connections;
     queue* traverse_(int,bool*, queue*,int);
-
+    queue* _traverse(int,bool*, queue*,int);
     public:
         graph(int);
         void add_path(int, int);
-        queue* traverse(int);
+        queue* depth_first(int);
+        queue* breadth_first(int);
 };
 
 #endif

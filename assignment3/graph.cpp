@@ -31,9 +31,33 @@ queue* graph::traverse_(int start_point, bool* visited,queue *path_queue,int no_
     return path_queue;
 }
 
-queue* graph::traverse(int start_point){
+queue* graph::_traverse(int start_point, bool *visited, queue *path_queue, int no_visited){
+    if (no_visited == rows){
+        return path_queue;
+    }
+    for (int i = 0; i < rows; i++){
+        if (arr[start_point][i] && !visited[i]){
+            path_queue->push(i);
+        }
+    }
+    for (int i = 0; i < rows; i++){
+        if (arr[start_point][i] && !visited[i]){
+            path_queue = _traverse(i,visited,path_queue,no_visited);
+        }
+    }
+    return path_queue;
+}
+
+queue* graph::depth_first(int start_point){
     bool visited[rows] = {0};
     queue *path = new queue();
-    traverse_(start_point,visited,path,0);
+    return traverse_(start_point,visited,path,0);
+}
 
+queue* graph::breadth_first(int start_point){
+    bool visited[rows] = {0};
+    queue *path = new queue();
+    path->push(start_point);
+    visited[start_point] = 1;
+    return _traverse(start_point, visited, path, 1);
 }
