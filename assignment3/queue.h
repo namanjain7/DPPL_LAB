@@ -20,8 +20,9 @@ class queue{
     bool is_empty();
     public:
         queue();
-        bool pop();
-        void push(int);
+        bool dequeue();
+        void enqueue(int);
+        int peek();
         void display();
 };
 

@@ -12,6 +12,7 @@ class graph{
     int rows, connections;
     queue* traverse_(int,bool*, queue*,int);
     queue* _traverse(int,bool*, queue*,int);
+    bool no_incoming(int);
     public:
         graph(int);
         void add_path(int, int);

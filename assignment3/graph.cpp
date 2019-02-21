@@ -20,11 +20,11 @@ queue* graph::traverse_(int start_point, bool* visited,queue *path_queue,int no_
     if(no_visited == rows){
         return path_queue;
     }
-    path_queue->push(start_point);
+    path_queue->enqueue(start_point);
     visited[start_point] = 1;
     no_visited++;
     for(int i = 0 ; i < rows ; i++){
-        if(arr[start_point][i] && !visited[i]){
+        if(arr[start_point][i] && !visited[i] && i != start_point){
             path_queue = traverse_(i,visited,path_queue,no_visited);
         }
     }
@@ -36,12 +36,12 @@ queue* graph::_traverse(int start_point, bool *visited, queue *path_queue, int n
         return path_queue;
     }
     for (int i = 0; i < rows; i++){
-        if (arr[start_point][i] && !visited[i]){
-            path_queue->push(i);
+        if (arr[start_point][i] && !visited[i] && i != start_point){
+            path_queue->enqueue(i);
         }
     }
     for (int i = 0; i < rows; i++){
-        if (arr[start_point][i] && !visited[i]){
+        if (arr[start_point][i] && !visited[i] && i != start_point){
             path_queue = _traverse(i,visited,path_queue,no_visited);
         }
     }
@@ -57,7 +57,19 @@ queue* graph::depth_first(int start_point){
 queue* graph::breadth_first(int start_point){
     bool visited[rows] = {0};
     queue *path = new queue();
-    path->push(start_point);
+    path->enqueue(start_point);
     visited[start_point] = 1;
     return _traverse(start_point, visited, path, 1);
+}
+
+bool graph::no_incoming(int node){
+    for(int i = 0 ; i < rows ; i++){
+        if(node == i){
+            continue;
+        }
+        if(arr[i][node]){
+            return 0;
+        }
+    }
+    return 1;
 }
